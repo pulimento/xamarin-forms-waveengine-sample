@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -38,6 +38,9 @@
     <Reference Include="WaveEngine.Adapter">
       <HintPath>..\..\packages\WaveEngine.Adapter.2.5.0.39\lib\net45\WaveEngine.Adapter.dll</HintPath>
     </Reference>
+    <Reference Include="WaveEngine.ARMobile, Version=2.5.0.39, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\WaveEngine.ARMobile.2.5.0.39\lib\net45\WaveEngine.ARMobile.dll</HintPath>
+    </Reference>
     <Reference Include="WaveEngine.Box2D">
       <HintPath>..\..\packages\WaveEngine.Box2D.2.5.0.39\lib\net45\WaveEngine.Box2D.dll</HintPath>
     </Reference>
@@ -73,6 +76,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Game.ico" />
     <EmbeddedResource Include="SplashScreen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="..\..\SharedSource\Main\XamarinForms3DCarSampleSource.projitems" Label="Shared" Condition="Exists('..\..\SharedSource\Main\XamarinForms3DCarSampleSource.projitems')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

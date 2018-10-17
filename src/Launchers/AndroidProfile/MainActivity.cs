@@ -8,7 +8,6 @@ using WaveEngine.Adapter;
 using WaveEngine.Common.Input;
 using XamarinForms3DCarSample.Helpers;
 using Xamarin.Forms;
-using DLToolkit.Forms.Controls;
 
 namespace XamarinForms3DCarSample.Droid
 {
@@ -20,21 +19,21 @@ namespace XamarinForms3DCarSample.Droid
     public class MainActivity : Xamarin.Forms.Platform.Android.FormsApplicationActivity, IAndroidApplication
     {
         private IGame game;
-        private GLView view;
+        //private GLView view;
         private bool isGameInitialized = false;
 
-        public GLView View
-        {
-            get
-            {
-                return view;
-            }
+        public GLView View { get; set; }
+        //{
+        //    get
+        //    {
+        //        return view;
+        //    }
 
-            set
-            {
-                view = value;
-            }
-        }
+        //    set
+        //    {
+        //        view = value;
+        //    }
+        //}
 
         public Activity Activity
         {
@@ -189,8 +188,6 @@ namespace XamarinForms3DCarSample.Droid
             Window.AddFlags(WindowManagerFlags.Fullscreen);
 
             Forms.Init(this, savedInstanceState);
-
-            FlowListView.Init();
 
             LoadApplication(new App());
         }
