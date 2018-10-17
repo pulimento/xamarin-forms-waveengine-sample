@@ -8,6 +8,7 @@ using WaveEngine.Adapter;
 using WaveEngine.Common.Input;
 using XamarinForms3DCarSample.Helpers;
 using Xamarin.Forms;
+using WaveEngine.Framework.Services;
 
 namespace XamarinForms3DCarSample.Droid
 {
@@ -19,21 +20,9 @@ namespace XamarinForms3DCarSample.Droid
     public class MainActivity : Xamarin.Forms.Platform.Android.FormsApplicationActivity, IAndroidApplication
     {
         private IGame game;
-        //private GLView view;
         private bool isGameInitialized = false;
 
         public GLView View { get; set; }
-        //{
-        //    get
-        //    {
-        //        return view;
-        //    }
-
-        //    set
-        //    {
-        //        view = value;
-        //    }
-        //}
 
         public Activity Activity
         {
@@ -183,7 +172,7 @@ namespace XamarinForms3DCarSample.Droid
         {
             Window.AddFlags(WindowManagerFlags.KeepScreenOn);
 
-            Window.AddFlags(WindowManagerFlags.Fullscreen);
+            HideSystemUI();
 
             base.OnCreate(savedInstanceState);
 
@@ -216,14 +205,18 @@ namespace XamarinForms3DCarSample.Droid
 
         public override bool OnKeyDown(Keycode keyCode, KeyEvent e)
         {
-            bool handled = false;
+            if (keyCode == Keycode.Back && WaveServices.Platform != null)
+            {
+                WaveServices.Platform.Exit();
+                return true;
+            }
 
             if (View != null)
             {
-                handled = View.OnKeyDown(keyCode, e);
+                return View.OnKeyDown(keyCode, e);
             }
 
-            return handled;
+            return base.OnKeyDown(keyCode, e);
         }
 
         public override bool OnKeyUp(Keycode keyCode, KeyEvent e)
@@ -236,6 +229,25 @@ namespace XamarinForms3DCarSample.Droid
             }
 
             return handled;
+        }
+
+        public override void OnWindowFocusChanged(bool hasFocus)
+        {
+            base.OnWindowFocusChanged(hasFocus);
+
+            if(hasFocus)
+            {
+                HideSystemUI();
+            }
+        }
+
+        private void HideSystemUI()
+        {
+            int uiOptions = (int)Window.DecorView.SystemUiVisibility;
+            uiOptions |= (int)SystemUiFlags.Immersive;
+            uiOptions |= (int)SystemUiFlags.Fullscreen;
+            uiOptions |= (int)SystemUiFlags.HideNavigation;
+            Window.DecorView.SystemUiVisibility = (StatusBarVisibility)uiOptions;
         }
     }
 }
