@@ -1,3 +1,4 @@
+using System;
 using WaveEngine.Framework;
 using WaveEngine.Framework.Services;
 
@@ -7,10 +8,15 @@ namespace XamarinForms3DCarSample.Helpers
     {
         private static MyScene _scene;
 
+        public static event EventHandler<EventArgs> Initialized;
+
+
         public static void Initialize(MyScene scene)
         {
             _scene = scene;
-        }      
+
+            Initialized?.Invoke(null, EventArgs.Empty);
+        }
 
         public static ScreenContextManager GetScreenContextManager()
         {

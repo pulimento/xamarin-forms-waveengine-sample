@@ -13,6 +13,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Controls\WaveEngineSurface.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\InverseBoolConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\WaveEngineFacade.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MessengerKeys.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Navigation\INavigationService.cs" />

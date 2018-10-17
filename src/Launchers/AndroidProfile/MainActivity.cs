@@ -181,11 +181,13 @@ namespace XamarinForms3DCarSample.Droid
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
+            Window.AddFlags(WindowManagerFlags.KeepScreenOn);
+
+            Window.AddFlags(WindowManagerFlags.Fullscreen);
+
             base.OnCreate(savedInstanceState);
 
             this.VolumeControlStream = Android.Media.Stream.Music;
-
-            Window.AddFlags(WindowManagerFlags.Fullscreen);
 
             Forms.Init(this, savedInstanceState);
 
@@ -234,30 +236,6 @@ namespace XamarinForms3DCarSample.Droid
             }
 
             return handled;
-        }
-
-        public override void OnConfigurationChanged(Android.Content.Res.Configuration newConfig)
-        {
-            base.OnConfigurationChanged(newConfig);
-        }
-
-        public static ScreenOrientation GetNativeOrientation(DisplayOrientation orientation)
-        {
-            ScreenOrientation nativeOrientation = ScreenOrientation.Sensor;
-
-            switch (orientation)
-            {
-                case DisplayOrientation.Default:
-                case DisplayOrientation.LandscapeLeft:
-                case DisplayOrientation.LandscapeRight:
-                    nativeOrientation = ScreenOrientation.SensorLandscape;
-                    break;
-                case DisplayOrientation.Portrait:
-                    nativeOrientation = ScreenOrientation.SensorPortrait;
-                    break;
-            }
-
-            return nativeOrientation;
         }
     }
 }
